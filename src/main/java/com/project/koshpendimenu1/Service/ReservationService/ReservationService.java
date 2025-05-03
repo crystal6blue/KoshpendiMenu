@@ -1,23 +1,51 @@
 package com.project.koshpendimenu1.Service.ReservationService;
 
 import com.project.koshpendimenu1.Model.Reservation;
+import com.project.koshpendimenu1.Repository.ReservationRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-public interface IReservationService {
+@Service
+@RequiredArgsConstructor
+public class ReservationService implements IReservationService {
+
+    private final ReservationRepository reservationRepository;
 
     // Add a new reservation
-    Reservation addReservation(Reservation reservation);
+    @Override
+    public Reservation addReservation(Reservation reservation) {
+        return reservationRepository.save(reservation);
+    }
 
     // Update an existing reservation
-    Reservation updateReservation(Long id, Reservation updatedReservation);
+    @Override
+    public Reservation updateReservation(Long id, Reservation updatedReservation) {
+        if (reservationRepository.existsById(id)) {
+            updatedReservation.setId(id); // Make sure the ID is set
+            return reservationRepository.save(updatedReservation);
+        }
+        return null; // or throw an exception if the reservation does not exist
+    }
 
     // Delete a reservation by ID
-    void deleteReservation(Long id);
+    @Override
+    public void deleteReservation(Long id) {
+        if (reservationRepository.existsById(id)) {
+            reservationRepository.deleteById(id);
+        }
+    }
 
     // Fetch a reservation by ID
-    Optional<Reservation> getReservationById(Long id);
+    @Override
+    public Optional<Reservation> getReservationById(Long id) {
+        return reservationRepository.findById(id);
+    }
 
     // Fetch all reservations
-    Iterable<Reservation> getAllReservations();
+    @Override
+    public Iterable<Reservation> getAllReservations() {
+        return reservationRepository.findAll();
+    }
 }
