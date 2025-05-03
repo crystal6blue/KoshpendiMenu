@@ -6,6 +6,7 @@ import com.project.koshpendimenu1.Model.Menu;
 import java.util.Optional;
 
 public interface IMenuService {
+
     // Add a new menu item
     Menu addMenu(Menu menu);
 
