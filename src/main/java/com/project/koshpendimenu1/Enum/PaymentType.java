@@ -1,4 +1,4 @@
-package com.project.koshpendimenu1.Model.Enum;
+package com.project.koshpendimenu1.Enum;
 
 
 public enum PaymentType {

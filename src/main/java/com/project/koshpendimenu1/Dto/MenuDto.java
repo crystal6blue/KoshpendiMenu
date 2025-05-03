@@ -5,7 +5,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CategoryDto {
+public class MenuDto {
     private String name;
     private String description;
+    private int price;
+    private Long categoryId;
+    private String imageUrl;
 }

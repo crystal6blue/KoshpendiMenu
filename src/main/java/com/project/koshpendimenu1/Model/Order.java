@@ -1,7 +1,7 @@
 package com.project.koshpendimenu1.Model;
 
 
-import com.project.koshpendimenu1.Model.Enum.PaymentType;
+import com.project.koshpendimenu1.Enum.PaymentType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
