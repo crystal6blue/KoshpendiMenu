@@ -2,7 +2,6 @@ package com.project.koshpendimenu1.Service.AddressService;
 
 import com.project.koshpendimenu1.Model.Address;
 import com.project.koshpendimenu1.Repository.AddressRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -43,6 +42,8 @@ public class AddressService implements IAddressService {
     // Fetch an address by ID
     @Override
     public Optional<Address> getAddressById(Long id) {
+        System.out.println(id);
+        System.out.println(addressRepository.findById(id).get());
         return addressRepository.findById(id);
     }
 

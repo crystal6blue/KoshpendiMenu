@@ -27,8 +27,9 @@ public class AddressController {
 
     // Get an address by ID
     @GetMapping("/{id}")
-    public Optional<Address> getAddressById(@PathVariable Long id) {
-        return addressService.getAddressById(id);
+    public Address getAddressById(@PathVariable Long id) {
+        System.out.println(addressService.getAddressById(id).get());
+        return addressService.getAddressById(id).get();
     }
 
     // Get all addresses

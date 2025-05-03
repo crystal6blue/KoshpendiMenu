@@ -3,6 +3,7 @@ package com.project.koshpendimenu1.Controller;
 import com.project.koshpendimenu1.Model.Menu;
 import com.project.koshpendimenu1.Service.MenuService.IMenuService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -20,8 +21,9 @@ public class MenuController {
     // Add a new menu item
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Menu addMenu(@RequestBody Menu menu) {
-        return menuService.addMenu(menu);
+    public ResponseEntity<?> addMenu(@RequestBody Menu menu) {
+        menuService.addMenu(menu);
+        return ResponseEntity.ok("Successfully created");
     }
 
     // Get a menu item by ID
