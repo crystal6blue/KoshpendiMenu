@@ -27,7 +27,7 @@ public class MenuService implements IMenuService {
     @Override
     public Menu updateMenu(Long id, Menu updatedMenu) {
         if (menuRepository.existsById(id)) {
-            updatedMenu.setId(id);
+            //updatedMenu.setId(id);
             return menuRepository.save(updatedMenu);
         }
         return null; // or throw an exception if the menu item does not exist

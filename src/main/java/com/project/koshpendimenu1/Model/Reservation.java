@@ -18,4 +18,16 @@ public class Reservation {
     private Long id;
     private Long customerId;
     private Long tableId;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public void setTableId(Long tableId) {
+        this.tableId = tableId;
+    }
 }

@@ -10,8 +10,7 @@ import lombok.*;
 import java.time.LocalDate;
 
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Customer {
 
@@ -43,6 +42,37 @@ public class Customer {
     }
 
     public Customer() {
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(@NonNull String surname) {
+        this.surname = surname;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

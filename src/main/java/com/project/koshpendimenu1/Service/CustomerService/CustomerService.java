@@ -28,7 +28,7 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer updateCustomer(Long id, Customer updatedCustomer) {
         if (customerRepository.existsById(id)) {
-            updatedCustomer.setId(id);
+            //updatedCustomer.setId(id);
             return customerRepository.save(updatedCustomer);
         }
         return null; // or throw an exception if the customer does not exist

@@ -28,4 +28,36 @@ public class Order {
 
     private Long deliverId;
     private Long reservationId;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public void setPayment(PaymentType payment) {
+        this.payment = payment;
+    }
+
+    public void setPaymentStatus(Long paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setDeliverId(Long deliverId) {
+        this.deliverId = deliverId;
+    }
+
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
+    }
 }

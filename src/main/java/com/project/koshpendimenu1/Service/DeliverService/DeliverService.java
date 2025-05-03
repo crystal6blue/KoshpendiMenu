@@ -27,7 +27,7 @@ public class DeliverService implements IDeliverService {
     @Override
     public Deliver updateDeliver(Long id, Deliver updatedDeliver) {
         if (deliverRepository.existsById(id)) {
-            updatedDeliver.setId(id);
+            //updatedDeliver.setId(id);
             return deliverRepository.save(updatedDeliver);
         }
         return null; // or throw an exception if the delivery does not exist

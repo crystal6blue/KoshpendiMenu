@@ -13,7 +13,6 @@ public class ReservationService implements IReservationService {
 
     private final ReservationRepository reservationRepository;
 
-    // Add a new reservation
     @Override
     public Reservation addReservation(Reservation reservation) {
         return reservationRepository.save(reservation);
