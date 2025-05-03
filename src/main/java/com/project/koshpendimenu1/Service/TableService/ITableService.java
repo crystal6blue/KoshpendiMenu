@@ -1,23 +1,23 @@
 package com.project.koshpendimenu1.Service.TableService;
 
-import com.project.koshpendimenu1.Model.Table;
+import com.project.koshpendimenu1.Model.Tables;
 
 import java.util.Optional;
 
 public interface ITableService {
 
     // Add a new table
-    Table addTable(Table table);
+    Tables addTable(Tables table);
 
     // Update an existing table
-    Table updateTable(Long id, Table updatedTable);
+    Tables updateTable(Long id, Tables updatedTable);
 
     // Delete a table by ID
     void deleteTable(Long id);
 
     // Fetch a table by ID
-    Optional<Table> getTableById(Long id);
+    Optional<Tables> getTableById(Long id);
 
     // Fetch all tables
-    Iterable<Table> getAllTables();
+    Iterable<Tables> getAllTables();
 }

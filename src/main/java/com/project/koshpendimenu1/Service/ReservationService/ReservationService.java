@@ -3,15 +3,20 @@ package com.project.koshpendimenu1.Service.ReservationService;
 import com.project.koshpendimenu1.Model.Reservation;
 import com.project.koshpendimenu1.Repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class ReservationService implements IReservationService {
 
-    private final ReservationRepository reservationRepository;
+    final ReservationRepository reservationRepository;
+
+    @Autowired
+    public ReservationService(ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
+    }
 
     @Override
     public Reservation addReservation(Reservation reservation) {

@@ -1,23 +1,23 @@
 package com.project.koshpendimenu1.Service.OrderService;
 
-import com.project.koshpendimenu1.Model.Order;
+import com.project.koshpendimenu1.Model.Orders;
 
 import java.util.Optional;
 
 public interface IOrderService {
 
     // Add a new order
-    Order addOrder(Order order);
+    Orders addOrder(Orders order);
 
     // Update an existing order
-    Order updateOrder(Long id, Order updatedOrder);
+    Orders updateOrder(Long id, Orders updatedOrder);
 
     // Delete an order by ID
     void deleteOrder(Long id);
 
     // Fetch an order by ID
-    Optional<Order> getOrderById(Long id);
+    Optional<Orders> getOrderById(Long id);
 
     // Fetch all orders
-    Iterable<Order> getAllOrders();
+    Iterable<Orders> getAllOrders();
 }

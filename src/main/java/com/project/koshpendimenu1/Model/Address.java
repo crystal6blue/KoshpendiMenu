@@ -28,4 +28,20 @@ public class Address {
         this.street = street;
         this.city = city;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
 }

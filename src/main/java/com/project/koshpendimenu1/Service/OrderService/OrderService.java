@@ -1,6 +1,7 @@
 package com.project.koshpendimenu1.Service.OrderService;
 
-import com.project.koshpendimenu1.Model.Order;
+
+import com.project.koshpendimenu1.Model.Orders;
 import com.project.koshpendimenu1.Repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +20,13 @@ public class OrderService implements IOrderService {
 
     // Add a new order
     @Override
-    public Order addOrder(Order order) {
+    public Orders addOrder(Orders order) {
         return orderRepository.save(order);
     }
 
     // Update an existing order
     @Override
-    public Order updateOrder(Long id, Order updatedOrder) {
+    public Orders updateOrder(Long id, Orders updatedOrder) {
         if (orderRepository.existsById(id)) {
             updatedOrder.setId(id);
             return orderRepository.save(updatedOrder);
@@ -43,13 +44,13 @@ public class OrderService implements IOrderService {
 
     // Fetch an order by ID
     @Override
-    public Optional<Order> getOrderById(Long id) {
+    public Optional<Orders> getOrderById(Long id) {
         return orderRepository.findById(id);
     }
 
     // Fetch all orders
     @Override
-    public Iterable<Order> getAllOrders() {
+    public Iterable<Orders> getAllOrders() {
         return orderRepository.findAll();
     }
 }
