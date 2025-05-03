@@ -1,0 +1,7 @@
+package com.project.koshpendimenu1.Repository;
+
+import com.project.koshpendimenu1.Model.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderRepository extends JpaRepository<Order, Long> {
+}
