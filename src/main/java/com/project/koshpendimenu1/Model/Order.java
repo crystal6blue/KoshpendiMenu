@@ -1,10 +1,8 @@
 package com.project.koshpendimenu1.Model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.project.koshpendimenu1.Model.Enum.PaymentType;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +20,12 @@ public class Order {
     private Long id;
     private Long customerId;
     private BigDecimal totalPrice;
-    private String paymentId;
+
+    @Enumerated
+    private PaymentType payment;
+    private Long paymentStatus;
     private String status;
+
+    private Long deliverId;
+    private Long reservationId;
 }
