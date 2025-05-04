@@ -1,0 +1,204 @@
+let openShopping = document.querySelector('.shopping');
+let closeShopping = document.querySelector('.closeShopping');
+let list = document.querySelector('.list');
+let listCard = document.querySelector('.listCard');
+let body = document.querySelector('body');
+let total = document.querySelector('.total');
+let quantity = document.querySelector('.quantity');
+
+const foodsLabel = document.querySelector('#foodsLabel .items');
+const drinksLabel = document.querySelector('#drinksLabel .items');
+const saladsLabel = document.querySelector('#saladsLabel .items');
+const dessertsLabel = document.querySelector('#dessertsLabel .items');
+
+openShopping.addEventListener('click', ()=>{
+    body.classList.add('active');
+})
+closeShopping.addEventListener('click', ()=>{
+    body.classList.remove('active');
+})
+
+
+
+let products = [
+    {
+        id: 1,
+        name: 'PRODUCT NAME 1',
+        image: '1.PNG',
+        price: 120000
+    },
+    {
+        id: 2,
+        name: 'PRODUCT NAME 2',
+        image: '2.PNG',
+        price: 120000
+    },
+    {
+        id: 3,
+        name: 'PRODUCT NAME 3',
+        image: '3.PNG',
+        price: 220000
+    },
+    {
+        id: 4,
+        name: 'PRODUCT NAME 4',
+        image: '4.PNG',
+        price: 123000
+    },
+    {
+        id: 5,
+        name: 'PRODUCT NAME 5',
+        image: '5.PNG',
+        price: 320000
+    },
+    {
+        id: 6,
+        name: 'PRODUCT NAME 6',
+        image: '6.PNG',
+        price: 120000
+    }
+];
+let listCards  = [];
+function initApp(){
+    products.forEach((value, key) =>{
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('item');
+        newDiv.innerHTML = `
+            <img src="image/${value.image}">
+            <div class="title">${value.name}</div>
+            <div class="price">${value.price.toLocaleString()}</div>
+            <button onclick="addToCard(${key})">Add To Card</button>`;
+        foodsLabel.appendChild(newDiv);
+    })
+    products.forEach((value, key) =>{
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('item');
+        newDiv.innerHTML = `
+            <img src="image/${value.image}">
+            <div class="title">${value.name}</div>
+            <div class="price">${value.price.toLocaleString()}</div>
+            <button onclick="addToCard(${key})">Add To Card</button>`;
+        drinksLabel.appendChild(newDiv);
+    })
+    products.forEach((value, key) =>{
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('item');
+        newDiv.innerHTML = `
+            <img src="image/${value.image}">
+            <div class="title">${value.name}</div>
+            <div class="price">${value.price.toLocaleString()}</div>
+            <button onclick="addToCard(${key})">Add To Card</button>`;
+        saladsLabel.appendChild(newDiv);
+    })
+    products.forEach((value, key) =>{
+        let newDiv = document.createElement('div');
+        newDiv.classList.add('item');
+        newDiv.innerHTML = `
+            <img src="image/${value.image}">
+            <div class="title">${value.name}</div>
+            <div class="price">${value.price.toLocaleString()}</div>
+            <button onclick="addToCard(${key})">Add To Card</button>`;
+        dessertsLabel.appendChild(newDiv);
+    })
+}
+
+initApp();
+function addToCard(key){
+    if(listCards[key] == null){
+        // copy product form list to list card
+        listCards[key] = JSON.parse(JSON.stringify(products[key]));
+        listCards[key].quantity = 1;
+    }
+    reloadCard();
+}
+
+function reloadCard(){
+    listCard.innerHTML = '';
+    let count = 0;
+    let totalPrice = 0;
+    listCards.forEach((value, key)=>{
+        totalPrice = totalPrice + value.price;
+        count = count + value.quantity;
+        if(value != null){
+            let newDiv = document.createElement('li');
+            newDiv.innerHTML = `
+                <div><img src="image/${value.image}"/></div>
+                <div>${value.name}</div>
+                <div>${value.price.toLocaleString()}</div>
+                <div>
+                    <button onclick="changeQuantity(${key}, ${value.quantity - 1})">-</button>
+                    <div class="count">${value.quantity}</div>
+                    <button onclick="changeQuantity(${key}, ${value.quantity + 1})">+</button>
+                </div>`;
+                listCard.appendChild(newDiv);
+        }
+    })
+    total.innerText = totalPrice.toLocaleString();
+    total.addEventListener('click', () => {
+        document.getElementById("paymentContainer").style.display = "block";
+        const paymentTotal = document.getElementById('paymentTotal')
+        paymentTotal.innerText = total.innerText;
+        paymentTotal.addEventListener('click', () => {
+            const name = document.getElementById('name');
+            const cardNumber = document.getElementById('card-number');
+            const expiry = document.getElementById('expiry');
+            const cvv = document.getElementById('cvv');
+        
+            if (
+                name.value.trim() === '' ||
+                cardNumber.value.trim() === '' ||
+                expiry.value.trim() === '' ||
+                cvv.value.trim() === ''
+            ) {
+                alert('Please fill out the whole form');
+                return;
+            }
+            alert('Payment successfull')
+        });
+        
+      });      
+    quantity.innerText = count;
+}
+function changeQuantity(key, quantity){
+    if(quantity == 0){
+        delete listCards[key];
+    }else{
+        listCards[key].quantity = quantity;
+        listCards[key].price = quantity * products[key].price;
+    }
+    reloadCard();
+}
+
+function closePayment() {
+  document.getElementById("paymentContainer").style.display = "none";
+}
+
+
+
+
+function showDelivery() {
+    document.getElementById('deliveryForm').style.display = 'block';
+    document.getElementById('reservationForm').style.display = 'none';
+}
+
+function showReservation() {
+    document.getElementById('reservationForm').style.display = 'block';
+    document.getElementById('deliveryForm').style.display = 'none';
+}
+
+function finalizeOrder() {
+    // Optional: Validate delivery/reservation input if needed
+    alert('Order confirmed!');
+    document.getElementById('postPaymentOptions').style.display = 'none';
+    document.getElementById('deliveryForm').style.display = 'none';
+    document.getElementById('reservationForm').style.display = 'none';
+    
+    // Empty cart
+    listCards.length = 0; // assuming listCards is the cart array
+    reloadCard(); // refresh display
+
+    listCard.innerHTML = ''
+    document.getElementById("paymentContainer").style.display = "none";
+    totalPrice = 0;
+    total.innerText = totalPrice.toLocaleString();
+}

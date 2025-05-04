@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KoshpeliMenu Branches in Almaty</title>
+    <script src="https://maps.api.2gis.ru/2.0/loader.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #map {
+            width: 100%;
+            height: 600px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>KoshpeliMenu Restaurant Branches in Almaty</h1>
+    <div id="map"></div>
+
+    <script>
+        DG.then(function() {
+            const map = DG.map('map', {
+                center: [43.2389, 76.8897], // Almaty center
+                zoom: 12
+            });
+
+            // KoshpeliMenu branches data
+            const branches = [
+                {
+                    name: "KoshpeliMenu #1 (Central Branch)",
+                    lat: 43.2563,
+                    lng: 76.9456,
+                    address: "Abylai Khan Ave. 123"
+                },
+                {
+                    name: "KoshpeliMenu #2 (Business District)",
+                    lat: 43.2358, 
+                    lng: 76.9214,
+                    address: "Gogol St. 45"
+                },
+                {
+                    name: "KoshpeliMenu #3 (Historic Center)",
+                    lat: 43.2471,
+                    lng: 76.8952,
+                    address: "Panfilov St. 78"
+                },
+                {
+                    name: "KoshpeliMenu #4 (Residential Area)",
+                    lat: 43.2246,
+                    lng: 76.8729,
+                    address: "Rozybakiev St. 34"
+                },
+                {
+                    name: "KoshpeliMenu #5 (Shopping Zone)",
+                    lat: 43.2654,
+                    lng: 76.9283,
+                    address: "Sain St. 56"
+                }
+            ];
+
+            // Add custom markers
+            branches.forEach((branch, index) => {
+                DG.marker([branch.lat, branch.lng], {
+                    icon: DG.icon({
+                        iconUrl: 'https://img.icons8.com/color/48/map-pin.png',
+                        iconSize: [32, 32]
+                    })
+                })
+                .addTo(map)
+                .bindPopup(`
+                    <div style="min-width: 200px">
+                        <h3 style="margin: 0; color: #e74c3c">${branch.name}</h3>
+                        <p style="margin: 5px 0">📍 ${branch.address}</p>
+                        <small style="color: #7f8c8d">Branch ID: KOSH-00${index + 1}</small>
+                    </div>
+                `);
+            });
+
+            // Auto-zoom to show all branches
+            const bounds = DG.latLngBounds(
+                branches.map(b => [b.lat, b.lng])
+            );
+            map.fitBounds(bounds, { padding: [60, 60] });
+        });
+    </script>
+</body>
+</html>
